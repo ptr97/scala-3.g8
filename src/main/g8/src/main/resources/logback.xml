@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <if condition='p("LOGBACK_JSON_ENCODE").equals("true")'>
+            <then>
+                <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                    <fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames">
+                        <level>severity</level>
+                        <thread>thread</thread>
+                        <logger>logger</logger>
+                        <levelValue>[ignore]</levelValue>
+                        <version>[ignore]</version>
+                    </fieldNames>
+                </encoder>
+            </then>
+            <else>
+                <encoder>
+                    <pattern>%green([%d{HH:mm:ss.SSS}]) %yellow([%thread]) %highlight(%-5level) %red(%logger{5}) - %msg%n%rEx</pattern>
+                </encoder>
+            </else>
+        </if>
+    </appender>
+
+    <appender name="ASYNC_STDOUT" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <logger name="$package$" level="\${LOG_LEVEL:-DEBUG}" additivity="false">
+        <appender-ref ref="ASYNC_STDOUT"/>
+    </logger>
+
+    <logger name="sttp.client3" level="\${LOG_LEVEL:-DEBUG}" additivity="false">
+        <appender-ref ref="ASYNC_STDOUT"/>
+    </logger>
+
+    <logger name="sttp.tapir" level="\${LOG_LEVEL:-DEBUG}" additivity="false">
+        <appender-ref ref="ASYNC_STDOUT"/>
+    </logger>
+
+    <root level="\${LOG_LEVEL:-INFO}">
+        <appender-ref ref="ASYNC_STDOUT"/>
+    </root>
+
+</configuration>

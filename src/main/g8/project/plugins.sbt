@@ -1,0 +1,9 @@
+addDependencyTreePlugin
+addSbtPlugin(Plugin.DotEnv)
+addSbtPlugin(Plugin.Git)
+addSbtPlugin(Plugin.NativePackager)
+addSbtPlugin(Plugin.SbtUpdates)
+addSbtPlugin(Plugin.SbtWelcome)
+addSbtPlugin(Plugin.Scalafix)
+addSbtPlugin(Plugin.ScalaFmt)
+addSbtPlugin(Plugin.Tpolecat)

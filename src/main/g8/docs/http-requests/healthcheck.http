@@ -1,0 +1,9 @@
+### Status endpoint
+# @no-log
+GET {{hostAndPort}}/api/v1/status
+Authorization: {{authType}} {{authToken}}
+
+### Ping endpoint
+# @no-log
+GET {{hostAndPort}}/api/v1/ping
+Authorization: {{authType}} {{authToken}}
