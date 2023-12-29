@@ -59,9 +59,9 @@ object Dependency {
   lazy val flyway = "org.flywaydb" % "flyway-core" % Version.flyway
 
   lazy val fs2 = Seq(
-    "co.fs2" %% "fs2-core" % Version.fs2,
-    "co.fs2" %% "fs2-io"   % Version.fs2
-  )
+    "co.fs2" %% "fs2-core",
+    "co.fs2" %% "fs2-io"
+  ).map(_ % Version.fs2)
 
   lazy val http4s = "org.http4s" %% "http4s-ember-server" % Version.http4s
 
